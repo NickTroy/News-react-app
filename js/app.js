@@ -91,21 +91,23 @@ var News = React.createClass({
 
 // --- добавили test input ---
 var TestInput = React.createClass({
-  handleClick: function(){
-    alert(ReactDOM.findDOMNode(this.refs.myTestInput).value)
+  componentDidMount: function() { //ставим фокус в input
+    ReactDOM.findDOMNode(this.refs.myTestInput).focus();
+  },
+  onBtnClickHandler: function() {
+    console.log(this.refs);
+    alert(ReactDOM.findDOMNode(this.refs.myTestInput).value);
   },
   render: function() {
     return (
       <div>
-        <input 
-          className='test-input' 
+        <input
+          className='test-input'
           defaultValue=''
+          placeholder='введите значение'
           ref='myTestInput'
-          placeholder='enter smth'
         />
-        <button onClick={this.handleClick} ref="alert_button">
-          Alert input
-        </button>
+        <button onClick={this.onBtnClickHandler} ref='alert_button'>Показать alert</button>
       </div>
     );
   }
